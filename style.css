@@ -1,0 +1,308 @@
+:root {
+  --darkblue: #3585ca; /* background */
+  --lightblue: #b7e6ff; /* globe */
+  --bluewhite: #e0f6ff; /* globe stars */
+  --blue: #9adefb; /* globe inset */
+  --yellow: #f6d271; /* stars */
+  --brown: #9e472f; /* base */
+  --lightbrown: #a65c3a; /* base trim */
+  --red: #db1b1b; /* table */
+  --darkred: #b51717; /* table pattern */
+  --lightbiege: #f5f5dc; /*background */
+  --purple: #dda0dd; /* hover globe */
+  --darkpurple: #c690c6; /* hover globe inset */
+  --cyan: #00ffff; /* hover globe glow */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--lightbiege);
+  width: 100%;
+  height: 100vh;
+}
+
+.circle {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 80vmin;
+  height: 80vmin;
+  border-radius: 50%;
+  background: linear-gradient(
+    var(--darkblue) 75%,
+    var(--darkblue) 75%,
+    var(--red) 75%
+  );
+  overflow: hidden;
+  box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.3);
+}
+
+.globe {
+  position: absolute;
+  width: 35vmin;
+  height: 35vmin;
+  border-radius: 50%;
+  top: 15vmin;
+  background: var(--lightblue);
+  transition: background 0.5s ease-out;
+  transition: box-shadow 0.5s ease-out; /* have to apply to both box shadows even though I only want the glow one not the inset one, no big deal */
+  box-shadow: inset 5vmin -4vmin 0vmin var(--blue);
+}
+
+.base {
+  position: absolute;
+  width: 30vmin;
+  height: 10vmin;
+  background: var(--brown);
+  bottom: 20vmin;
+  z-index: 1;
+}
+
+.base:before {
+  content: "";
+  position: absolute;
+  width: 33vmin;
+  height: 4vmin;
+  background: var(--lightbrown);
+  left: -1.5vmin;
+  bottom: 9vmin;
+  border-radius: 4vmin;
+}
+
+.base:after {
+  content: "";
+  position: absolute;
+  width: 36vmin;
+  height: 4vmin;
+  background: var(--lightbrown);
+  left: -2.7vmin;
+  bottom: -4vmin;
+  border-radius: 4vmin;
+}
+
+.base-pattern {
+  position: absolute;
+  width: 20vmin;
+  height: 5vmin;
+  background: var(--yellow);
+  border-radius: 50%;
+  left: 5vmin;
+  top: 3vmin;
+}
+
+.table-pattern {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-right: 40vmin solid transparent;
+  border-left: 40vmin solid transparent;
+  border-top: 13vmin solid var(--darkred);
+  bottom: 7vmin;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  width: 5min;
+  height: 5vmin;
+  top: 45vmin;
+  left: 12vmin;
+  border-radius: 50%;
+  transition: opacity 0.5s ease-out;
+}
+
+.star:before,
+.star:after {
+  content: "";
+  position: absolute;
+  background: var(--yellow);
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3vmin;
+  transform: rotate(-40deg) skew(45deg);
+}
+
+.star:after {
+  transform: rotate(230deg) skew(45deg);
+}
+
+/* outer stars */
+.s1 {
+  left: 18vmin;
+  top: 14vmin;
+  animation-delay: 0.4s;
+}
+
+.s2 {
+  left: 60vmin;
+  top: 12vmin;
+  animation-delay: 1s;
+}
+
+.s4 {
+  left: 64vmin;
+  top: 40vmin;
+  animation-delay: 1.5s;
+}
+
+/* inner stars */
+.s5 {
+  left: 29vmin;
+  top: 35vmin;
+
+  pointer-events: none;
+}
+
+.s6 {
+  left: 35vmin;
+  top: 20vmin;
+
+  pointer-events: none;
+}
+
+.s7 {
+  left: 49vmin;
+  top: 35vmin;
+
+  pointer-events: none;
+}
+
+.s8 {
+  left: 27vmin;
+  top: 26vmin;
+  width: 3vmin;
+  height: 3vmin;
+
+  pointer-events: none;
+}
+
+.s9 {
+  left: 42vmin;
+  top: 30vmin;
+  width: 3vmin;
+  height: 3vmin;
+
+  pointer-events: none;
+}
+
+.s8:after,
+.s8:before,
+.s9:after,
+.s9:before {
+  width: 2vmin;
+}
+
+.s5:after,
+.s5:before,
+.s6:after,
+.s6:before,
+.s7:after,
+.s7:before,
+.s8:before,
+.s8:after,
+.s9:before,
+.s9:after {
+  background: var(--bluewhite);
+}
+
+.innercircle {
+  position: absolute;
+  width: 3.2vmin;
+  height: 3.2vmin;
+  border-radius: 50%;
+  left: 8vmin;
+  top: 30vmin;
+  background: var(--yellow);
+}
+
+/* outer globe circles */
+.i2 {
+  left: 38vmin;
+  top: 6vmin;
+}
+
+.i3 {
+  left: 69vmin;
+  top: 29vmin;
+}
+
+/* inner globe circles */
+
+.i4 {
+  left: 50.5vmin;
+  top: 24.5vmin;
+  width: 5vmin;
+  height: 5vmin;
+  background: var(--bluewhite);
+  pointer-events: none;
+}
+
+.i5 {
+  left: 48vmin;
+  top: 20.5vmin;
+  width: 4vmin;
+  height: 4vmin;
+  background: var(--bluewhite);
+  pointer-events: none;
+}
+
+.globe:hover {
+  background: var(--purple);
+  box-shadow: inset 5vmin -4vmin 0vmin var(--darkpurple),
+    0px 0px 40px 20px var(--cyan);
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.globe:hover ~ .s5 {
+  animation: twinkle 0.5s alternate infinite;
+  animation-delay: 0.2s;
+}
+
+.globe:hover ~ .s6 {
+  animation: twinkle 0.5s alternate infinite;
+  animation-delay: 0.4s;
+}
+.globe:hover ~ .s7 {
+  animation: twinkle 0.5s alternate infinite;
+  animation-delay: 0.6s;
+}
+
+.globe:hover ~ .s8 {
+  animation: twinkle 0.5s alternate infinite;
+  animation-delay: 0.8s;
+}
+
+.globe:hover ~ .s9 {
+  animation: twinkle 0.5s alternate infinite;
+  animation-delay: 1s;
+}
+
+.globe:hover ~ .i4 {
+  animation: twinkle 0.5s alternate infinite;
+}
+.globe:hover ~ .i5 {
+  animation: twinkle 0.5s alternate infinite;
+  animation-delay: 0.2s;
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.45;
+  }
+  100% {
+    opacity: 1;
+  }
+}
